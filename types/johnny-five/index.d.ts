@@ -5,6 +5,7 @@
 //                 Simon Colmer <https://github.com/workshop2>
 //                 XtrimSystems <https://github.com/xtrimsystems>
 //                 Marcin Obiedziński <https://github.com/marcinobiedz>
+//                 Daniel Douglas Soyka <https://github.com/ddsoyka>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 ///<reference types="node"/>
@@ -110,6 +111,8 @@ export interface BoardOption {
 export declare class Board {
     constructor(option?: BoardOption);
 
+    static Collection: Collection<Board>
+
     io: any;
     id: string;
     repl: Repl;
@@ -131,6 +134,8 @@ export declare class Board {
     loop(ms: number, cb: () => void): void;
     samplingInterval(ms: number): void;
 }
+
+export declare type Boards = Collection<Board>
 
 export interface ButtonOption {
     pin: number | string;
@@ -155,6 +160,14 @@ export declare class Button {
     on(event: "press", cb: () => void): this;
     on(event: "up", cb: () => void): this;
     on(event: "release", cb: () => void): this;
+}
+
+export class Collection<T> extends Array<T> {
+    constructor(numsorObjects: any)
+
+    add(): number
+    each(callbackFn: (a: T, b: T, index: number) => void): Collection<T>
+    byId(id: any): T
 }
 
 export interface CompassOption {
